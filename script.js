@@ -9,13 +9,13 @@ const PROMO = new Set(['Aurus','Aurus II','Orion']);
 const NOVO  = new Set(['Eclat Noir','Astra III','Atlas','Aurora','Aurora II','Celeste','Celeste II','Elara','Elara II','Nyra','Nyra II']);
 
 const BANNERS = [
-  {img:'images/banners/banner-combo-2oculos.jpg',tag:'Lunah Collection',h:'Dois olhares,<br>um mesmo <em>estilo</em>',p:'2 óculos por R$219. Frete grátis para todo o Brasil.',cta:'Ver combo',msg:'Olá! Quero o combo 2 óculos por R$219.'},
-  {img:'images/banners/banner-combo-oculos-pulseira.jpg',tag:'Lunah Atelier',h:'O presente<br><em>completo</em>',p:'Óculos + Pulseira Olho de Tigre por R$199.',cta:'Montar combo',msg:'Olá! Quero o combo Óculos + Pulseira por R$199.'},
-  {img:'images/banners/banner-oculos-preco.jpg',tag:'Lunah',h:'Design que<br><em>marca</em> presença',p:'Óculos com design editorial. R$149 à vista ou 4x de R$40.',cta:'Ver coleção',msg:'Olá! Quero comprar um óculos Lunah.'},
-  {img:'images/banners/banner-atelier-pulseiras.jpg',tag:'Lunah Atelier',h:'Energia que<br><em>transforma</em>',p:'Pulseiras com pedras naturais. R$119 ou 4x de R$30.',cta:'Ver pulseiras',msg:'Olá! Quero conhecer as pulseiras Lunah Atelier.'},
-  {img:'images/banners/banner-colors-sunrise.jpg',tag:'Lunah Colors',h:'Cores que<br><em>definem</em> você',p:'Lentes coloridas e armações sem aro com presença.',cta:'Descobrir',msg:'Olá! Quero conhecer a linha Lunah Colors.'},
-  {img:'images/banners/banner-grade-oculos.jpg',tag:'Lunah Vision',h:'Grau com<br><em>sofisticação</em>',p:'Armações de grau com design editorial Lunah.',cta:'Ver Vision',msg:'Olá! Quero conhecer a Lunah Vision.'},
-  {img:'images/banners/banner-2pulseiras.jpg',tag:'Essências',h:'Escolha sua<br><em>energia</em>',p:'2 pulseiras por R$199,90. Amor que acolhe.',cta:'Escolher',msg:'Olá! Quero o combo 2 pulseiras por R$199,90.'},
+  {img:'banner-combo-2oculos.jpg',tag:'Lunah Collection',h:'Dois olhares,<br>um mesmo <em>estilo</em>',p:'2 óculos por R$219. Frete grátis para todo o Brasil.',cta:'Ver combo',msg:'Olá! Quero o combo 2 óculos por R$219.'},
+  {img:'banner-combo-oculos-pulseira.jpg',tag:'Lunah Atelier',h:'O presente<br><em>completo</em>',p:'Óculos + Pulseira Olho de Tigre por R$199.',cta:'Montar combo',msg:'Olá! Quero o combo Óculos + Pulseira por R$199.'},
+  {img:'banner-oculos-preco.jpg',tag:'Lunah',h:'Design que<br><em>marca</em> presença',p:'Óculos com design editorial. R$149 à vista ou 4x de R$40.',cta:'Ver coleção',msg:'Olá! Quero comprar um óculos Lunah.'},
+  {img:'banner-atelier-pulseiras.jpg',tag:'Lunah Atelier',h:'Energia que<br><em>transforma</em>',p:'Pulseiras com pedras naturais. R$119 ou 4x de R$30.',cta:'Ver pulseiras',msg:'Olá! Quero conhecer as pulseiras Lunah Atelier.'},
+  {img:'banner-colors-sunrise.jpg',tag:'Lunah Colors',h:'Cores que<br><em>definem</em> você',p:'Lentes coloridas e armações sem aro com presença.',cta:'Descobrir',msg:'Olá! Quero conhecer a linha Lunah Colors.'},
+  {img:'banner-grade-oculos.jpg',tag:'Lunah Vision',h:'Grau com<br><em>sofisticação</em>',p:'Armações de grau com design editorial Lunah.',cta:'Ver Vision',msg:'Olá! Quero conhecer a Lunah Vision.'},
+  {img:'banner-2pulseiras.jpg',tag:'Essências',h:'Escolha sua<br><em>energia</em>',p:'2 pulseiras por R$199,90. Amor que acolhe.',cta:'Escolher',msg:'Olá! Quero o combo 2 pulseiras por R$199,90.'},
 ];
 
 const glasses = [
@@ -45,21 +45,21 @@ const glasses = [
   ['Nero','Sensual','Tom profundo e linhas fluidas.','nero-front','nero-side','oval'],
   ['Eclipse II','Design premium','Translúcido com haste geométrica.','eclipse-ii-front','eclipse-ii-side','oval'],
   ['Orion','Diferenciação','Formato octogonal fora do comum.','orion-front','orion-side','quadrado'],
-].map(([name,line,desc,f,s,shape])=>({type:'glasses',name,line,desc,shape,price:PROMO.has(name)?'<s>R$160</s> <strong>R$119</strong> à vista<br>ou <strong>4x de R$32</strong>':'<strong>R$149</strong> à vista<br>ou <strong>4x de R$40</strong>',bullets:['Proteção UV400','Acabamento premium','Design exclusivo Lunah'],images:[`images/products/${f}.jpg`,`images/products/${s}.jpg`]}));
+].map(([name,line,desc,f,s,shape])=>({type:'glasses',name,line,desc,shape,price:PROMO.has(name)?'<s>R$160</s> <strong>R$119</strong> à vista<br>ou <strong>4x de R$32</strong>':'<strong>R$149</strong> à vista<br>ou <strong>4x de R$40</strong>',bullets:['Proteção UV400','Acabamento premium','Design exclusivo Lunah'],images:[`${f}.jpg`,`${s}.jpg`]}));
 
 const colors = [
   ['Elara','Sem aro · Degradê','Armação sem aro dourada com lente degradê acinzentada.','elara-front','elara-side'],
   ['Elara II','Sem aro · Rosa','Lente rosada e haste rose gold com personalidade.','elara-ii-front','elara-ii-side'],
   ['Nyra','Oval · Champagne','Oval sem aro com lente champagne minimalista.','nyra-front','nyra-side'],
   ['Nyra II','Oval · Rosa','Lente rosada e haste rose gold icônica.','nyra-ii-front','nyra-ii-side'],
-].map(([name,line,desc,f,s])=>({type:'glasses',name,line,desc,shape:'oval',price:'<strong>R$149</strong> à vista<br>ou <strong>4x de R$40</strong>',bullets:['Proteção UV400','Armação sem aro','Design exclusivo Lunah'],images:[`images/products/${f}.jpg`,`images/products/${s}.jpg`]}));
+].map(([name,line,desc,f,s])=>({type:'glasses',name,line,desc,shape:'oval',price:'<strong>R$149</strong> à vista<br>ou <strong>4x de R$40</strong>',bullets:['Proteção UV400','Armação sem aro','Design exclusivo Lunah'],images:[`${f}.jpg`,`${s}.jpg`]}));
 
 const vision = [
   ['Aurora','Redondo · Acetato','Redondo preto em acetato com detalhe dourado e símbolo Lunah.','aurora-front','aurora-side'],
   ['Aurora II','Redondo · Vinho','Redondo em acetato vinho escuro e elegante.','aurora-ii-front','aurora-ii-side'],
   ['Celeste','Sem aro · Prata','Sem aro em metal prata, minimalista e refinada.','celeste-front','celeste-side'],
   ['Celeste II','Oval · Prata','Oval sem aro com detalhe helicoidal e ponta tartaruga.','celeste-ii-front','celeste-ii-side'],
-].map(([name,line,desc,f,s])=>({type:'glasses',name,line,desc,shape:'redondo',price:'<strong>R$149</strong> à vista<br>ou <strong>4x de R$40</strong>',bullets:['Armação de grau','Design Lunah Vision','Acabamento premium'],images:[`images/products/${f}.jpg`,`images/products/${s}.jpg`]}));
+].map(([name,line,desc,f,s])=>({type:'glasses',name,line,desc,shape:'redondo',price:'<strong>R$149</strong> à vista<br>ou <strong>4x de R$40</strong>',bullets:['Armação de grau','Design Lunah Vision','Acabamento premium'],images:[`${f}.jpg`,`${s}.jpg`]}));
 
 const atelier = [
   ['Calm | Aquamarine','Calma · Leveza · Confiança','Acalma a mente e traz equilíbrio emocional.','aquamarine'],
@@ -68,7 +68,7 @@ const atelier = [
   ['Passion | Granada','Paixão · Coragem · Energia','Desperta energia, coragem e presença.','granada'],
   ['Protect | Turmalina','Proteção · Equilíbrio · Energia','Protege e estabiliza a energia do dia a dia.','turmalina'],
   ['Serenity | Jade','Harmonia · Prosperidade · Equilíbrio','Traz serenidade e sensação de bem-estar.','jade'],
-].map(([name,line,desc,img])=>({type:'atelier',name,line,desc,price:'<strong>R$119</strong> à vista<br>ou <strong>4x de R$30</strong>',bullets:['Pedras naturais','Intenção e energia','Detalhes que transformam'],images:[`images/atelier/thumbs/${img}.jpg`,`images/atelier/${img}.jpg`]}));
+].map(([name,line,desc,img])=>({type:'atelier',name,line,desc,price:'<strong>R$119</strong> à vista<br>ou <strong>4x de R$30</strong>',bullets:['Pedras naturais','Intenção e energia','Detalhes que transformam'],images:[`${img}.jpg`,`${img}.jpg`]}));
 
 /* HERO */
 function initHero() {
