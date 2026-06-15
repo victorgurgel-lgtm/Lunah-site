@@ -60,7 +60,9 @@ h1, h2, h3, .section-h2, .manifesto-headline {
   letter-spacing: .32em;
   font-size: 13px; font-weight: 500;
 }
-.nav-moon { font-size: 18px; color: var(--gold); }
+.nav-moon { font-size: 18px; color: var(--gold); display: inline-flex; align-items: center; }
+.nav-moon img { width: 26px; height: 26px; border-radius: 50%; object-fit: cover; vertical-align: middle; }
+.footer-logo span img { width: 22px; height: 22px; border-radius: 50%; object-fit: cover; vertical-align: middle; }
 .nav-wordmark { font-family: 'Playfair Display', serif; font-size: 22px; letter-spacing: .28em; }
 .nav-links { display: flex; gap: 32px; }
 .nav-links .nl {
