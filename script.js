@@ -6,7 +6,7 @@ const PAY = {
 };
 
 const PROMO = new Set(['Aurus','Aurus II','Orion']);
-const NOVO  = new Set(['Lyra','Maia','Sirius','Vela','Stella','Eclat Noir','Astra III','Atlas','Aurora','Aurora II','Celeste','Celeste II','Elara','Elara II','Nyra','Nyra II']);
+const NOVO  = new Set(['Lyra','Maia','Sirius','Vela','Stella','Eclat Noir','Astra III','Aurora','Aurora II','Celeste','Celeste II','Elara','Elara II','Nyra','Nyra II']);
 
 const BANNERS = [
   {img:'banner-combo-2oculos.jpg',tag:'Lunah Collection',h:'Dois olhares,<br>um mesmo <em>estilo</em>',p:'2 óculos por R$189. Frete grátis para todo o Brasil.',cta:'Ver combo',msg:'Olá! Quero o combo 2 óculos por R$189.'},
@@ -26,7 +26,6 @@ const glasses = [
   ['Stella','Novo lançamento','Rimless oval com hastes douradas marcantes.','stella-front','stella-side','oval'],
   ['Eclat Noir','Oval marcante','Armação oval preta com detalhe dourado elegante.','eclat-noir-front','eclat-noir-side','oval'],
   ['Astra III','Cat-eye moderno','Cat-eye azul escuro com linhas afiadas.','astra-iii-front','astra-iii-side','gatinho'],
-  ['Atlas','Novo lançamento','Aviador tartaruga com lente degradê azul.','atlas-front','atlas-side','aviador'],
   ['Orbit','Top seller','Design forte e moderno com presença premium.','orbit-front','orbit-side','quadrado'],
   ['Eclipse','Versátil','Preto versátil, elegante e indispensável.','eclipse-front','eclipse-side','oval'],
   ['Solaris','Equilíbrio','Tartaruga com lente rosada: estilo e leveza.','solaris-front','solaris-side','oval'],
