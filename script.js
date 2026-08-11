@@ -6,7 +6,7 @@ const PAY = {
 };
 
 const PROMO = new Set(['Aurus','Aurus II','Orion']);
-const NOVO  = new Set(['Eclat Noir','Astra III','Atlas','Aurora','Aurora II','Celeste','Celeste II','Elara','Elara II','Nyra','Nyra II']);
+const NOVO  = new Set(['Lyra','Maia','Sirius','Vela','Stella','Eclat Noir','Astra III','Atlas','Aurora','Aurora II','Celeste','Celeste II','Elara','Elara II','Nyra','Nyra II']);
 
 const BANNERS = [
   {img:'banner-combo-2oculos.jpg',tag:'Lunah Collection',h:'Dois olhares,<br>um mesmo <em>estilo</em>',p:'2 óculos por R$189. Frete grátis para todo o Brasil.',cta:'Ver combo',msg:'Olá! Quero o combo 2 óculos por R$189.'},
@@ -19,6 +19,11 @@ const BANNERS = [
 ];
 
 const glasses = [
+  ['Lyra','Novo lançamento','Oval retrô em acetato preto com rebites prateados.','lyra-front','lyra-side','oval'],
+  ['Maia','Novo lançamento','Geométrico dourado com lente marrom e ponteira tartaruga.','maia-front','maia-side','gatinho'],
+  ['Sirius','Novo lançamento','Hexagonal dourado com lente marrom escura.','sirius-front','sirius-side','quadrado'],
+  ['Vela','Novo lançamento','Dourado alongado com lente marrom clara.','vela-front','vela-side','gatinho'],
+  ['Stella','Novo lançamento','Rimless oval com hastes douradas marcantes.','stella-front','stella-side','oval'],
   ['Eclat Noir','Oval marcante','Armação oval preta com detalhe dourado elegante.','eclat-noir-front','eclat-noir-side','oval'],
   ['Astra III','Cat-eye moderno','Cat-eye azul escuro com linhas afiadas.','astra-iii-front','astra-iii-side','gatinho'],
   ['Atlas','Novo lançamento','Aviador tartaruga com lente degradê azul.','atlas-front','atlas-side','aviador'],
@@ -68,7 +73,7 @@ const atelier = [
   ['Passion | Granada','Paixão · Coragem · Energia','Desperta energia, coragem e presença.','granada'],
   ['Protect | Turmalina','Proteção · Equilíbrio · Energia','Protege e estabiliza a energia do dia a dia.','turmalina'],
   ['Serenity | Jade','Harmonia · Prosperidade · Equilíbrio','Traz serenidade e sensação de bem-estar.','jade'],
-].map(([name,line,desc,img])=>({type:'atelier',name,line,desc,price:'<strong>R$69</strong> à vista<br>ou em até <strong>12x</strong>',bullets:['Pedras naturais','Intenção e energia','Detalhes que transformam'],images:[`${img}.jpg`,`${img}.jpg`]}));
+].map(([name,line,desc,img])=>({type:'atelier',name,line,desc,price:'<strong>R$69</strong> à vista<br>ou em até <strong>12x</strong>',bullets:['Pedras naturais','Intenção e energia','Detalhes que transformam'],images:[`atelier-${img}.jpg`,`${img}.jpg`]}));
 
 /* HERO */
 function initHero() {
