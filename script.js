@@ -8,6 +8,10 @@ const PAY = {
 const PROMO = new Set(['Aurus','Aurus II','Orion']);
 const NOVO  = new Set(['Lyra','Maia','Sirius','Vela','Stella','Eclat Noir','Astra III','Aurora','Aurora II','Celeste','Celeste II','Elara','Elara II','Nyra','Nyra II']);
 
+const now = Date.now();
+const blackWeek = now >= Date.parse('2026-11-23T00:00:00-03:00') &&
+  now < Date.parse('2026-11-30T00:00:00-03:00');
+const offerPrice = (glasses) => glasses ? 'R$ 79,90' : 'R$ 49,90';
 const BANNERS = [
   {img:'banner-combo-2oculos.jpg',tag:'Lunah Collection',h:'Dois olhares,<br>um mesmo <em>estilo</em>',p:'2 óculos por R$189. Frete grátis para todo o Brasil.',cta:'Ver combo',msg:'Olá! Quero o combo 2 óculos por R$189.'},
   {img:'banner-combo-oculos-pulseira.jpg',tag:'Lunah Atelier',h:'O presente<br><em>completo</em>',p:'Óculos + Pulseira Olho de Tigre por R$149.',cta:'Montar combo',msg:'Olá! Quero o combo Óculos + Pulseira por R$149.'},
@@ -17,6 +21,17 @@ const BANNERS = [
   {img:'banner-grade-oculos.jpg',tag:'Lunah Vision',h:'Grau com<br><em>sofisticação</em>',p:'Armações de grau com design editorial Lunah.',cta:'Ver Vision',msg:'Olá! Quero conhecer a Lunah Vision.'},
   {img:'banner-2pulseiras.jpg',tag:'Essências',h:'Escolha sua<br><em>energia</em>',p:'2 pulseiras por R$129. Amor que acolhe.',cta:'Escolher',msg:'Olá! Quero o combo 2 pulseiras por R$129.'},
 ];
+
+if (blackWeek) {
+  BANNERS.splice(2, 2);
+  BANNERS.unshift({
+    img: 'lyra-front.jpg', tag: '23 a 29 de novembro',
+    h: 'Black Week <em>Lunah</em>',
+    p: 'Óculos por R$ 79,90 com frete grátis para São Paulo. Pulseiras por R$ 49,90.',
+    cta: 'Comprar pelo WhatsApp',
+    msg: 'Olá! Quero aproveitar a Black Week Lunah.',
+  });
+}
 
 const glasses = [
   ['Lyra','Novo lançamento','Oval retrô em acetato preto com rebites prateados.','lyra-front','lyra-side','oval'],
@@ -128,7 +143,7 @@ function initBurger() {
 function card(p, i, col) {
   const isG = p.type==='glasses';
   const badge = NOVO.has(p.name) ? '<span class="pcard-badge badge-novo">Novo</span>' : '';
-  const priceLabel = `<strong>${isG?'R$99':'R$69'}</strong>`;
+  const priceLabel = `<strong>${blackWeek ? offerPrice(isG) : (isG ? 'R$99' : 'R$69')}</strong>`;
   const hover = (isG && p.images[1]) ? `data-hover="${p.images[1]}" data-def="${p.images[0]}"` : '';
   return `<div class="pcard" data-col="${col}" data-i="${i}" data-shape="${p.shape||''}">
     ${badge}
@@ -184,10 +199,16 @@ function openModal(col, idx) {
   document.getElementById('modalTitle').textContent = p.name;
   document.getElementById('modalDesc').textContent = p.desc;
   document.getElementById('modalBullets').innerHTML = p.bullets.map(b=>`<li>${b}</li>`).join('');
-  document.getElementById('modalPrice').innerHTML = p.price;
-  document.getElementById('modalWa').href = wa(`Olá! Quero comprar o modelo ${p.name} da Lunah.`);
+  const isGlasses = p.type === 'glasses';
+  const modalPrice = document.getElementById('modalPrice');
+  if (blackWeek) {
+    modalPrice.textContent = offerPrice(isGlasses) + (isGlasses ? ' · Frete grátis para São Paulo' : '');
+  } else {
+    modalPrice.innerHTML = p.price;
+  }
+  document.getElementById('modalWa').href = wa(blackWeek ? `Olá! Quero comprar ${p.name} na Black Week por ${offerPrice(isGlasses)}${isGlasses ? ' com frete grátis para São Paulo' : ''}.` : `Olá! Quero comprar o modelo ${p.name} da Lunah.`);
   const payBtn = document.getElementById('modalPay');
-  const payLink = PAY[p.name];
+  const payLink = blackWeek ? null : PAY[p.name];
   payBtn.style.display = payLink ? '' : 'none';
   if (payLink) payBtn.href = payLink;
   const img = document.getElementById('modalImg');
@@ -243,6 +264,22 @@ function initModal() {
     document.body.style.overflow='';
   };
   modal.onclick=e=>{if(e.target===modal){document.getElementById('modalClose').click();}};
+}
+
+if (blackWeek) {
+  const sectionOffers = {
+    collection: ['R$99 à vista ou em até 12x', 'R$ 79,90 com frete grátis para São Paulo'],
+    colors: ['R$99 à vista ou em até 12x', 'R$ 79,90 com frete grátis para São Paulo'],
+    vision: ['R$99 à vista ou em até 12x', 'R$ 79,90 com frete grátis para São Paulo'],
+    atelier: ['R$69 à vista ou em até 12x', 'R$ 49,90'],
+  };
+  for (const [section, [regular, offer]] of Object.entries(sectionOffers)) {
+    for (const paragraph of document.querySelectorAll(`#${section} p`)) {
+      for (const node of paragraph.childNodes) {
+        if (node.nodeType === Node.TEXT_NODE) node.textContent = node.textContent.replace(regular, offer);
+      }
+    }
+  }
 }
 
 /* INIT */
