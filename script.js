@@ -28,8 +28,8 @@ if (blackWeek) {
     img: 'lyra-front.jpg', tag: '23 a 29 de novembro',
     h: 'Black Week <em>Lunah</em>',
     p: 'Óculos por R$ 79,90 com frete grátis para São Paulo. Pulseiras por R$ 49,90.',
-    cta: 'Comprar pelo WhatsApp',
-    msg: 'Olá! Quero aproveitar a Black Week Lunah.',
+    cta: 'Ver lançamentos',
+    href: '#lancamentos',
   });
 }
 
@@ -102,7 +102,7 @@ function initHero() {
         <span class="hslide-tag">${b.tag}</span>
         <h2 class="hslide-h">${b.h}</h2>
         <p class="hslide-p">${b.p}</p>
-        <a class="hslide-btn" href="${wa(b.msg)}" target="_blank" rel="noopener">${b.cta} →</a>
+        <a class="hslide-btn" href="${b.href || wa(b.msg)}"${b.href ? '' : ' target="_blank" rel="noopener"'}>${b.cta} →</a>
       </div>
     </div>`).join('');
   let cur = 0;
@@ -168,6 +168,19 @@ function renderAll() {
     if (!g) return;
     g.innerHTML = all[col].map((p,i)=>card(p,i,col)).join('');
   });
+  const featuredNames = ['Lyra', 'Maia', 'Sirius', 'Vela', 'Stella', 'Eclat Noir', 'Astra III'];
+  const featuredCards = featuredNames.map(name => {
+    const index = glasses.findIndex(product => product.name === name);
+    return card(glasses[index], index, 'glasses');
+  }).join('');
+  document.getElementById('collection').insertAdjacentHTML('beforebegin', `
+    <section class="collection-section" id="lancamentos">
+      <div class="section-title-row">
+        <h2 class="section-h2">Lançamentos <em>Lunah</em></h2>
+        ${blackWeek ? '<div class="section-meta"><p>R$ 79,90 por modelo · Frete grátis para São Paulo</p></div>' : ''}
+      </div>
+      <div class="pgrid">${featuredCards}</div>
+    </section>`);
   document.querySelectorAll('.pcard').forEach(el=>{
     el.onclick = ()=>openModal(el.dataset.col, +el.dataset.i);
     const wrap = el.querySelector('.pcard-img[data-hover]');
